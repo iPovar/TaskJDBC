@@ -9,7 +9,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        UserService userService = new UserServiceImpl();userService.createUsersTable();
+        UserService userService = new UserServiceImpl();
+        userService.createUsersTable();
 
         saveUser(userService,"Ivan", "Ivanov", (byte) 20);
         saveUser(userService,"Mihail", "Mihailov", (byte) 35);
@@ -26,7 +27,6 @@ public class Main {
     }
 
     private static void saveUser(UserService userService, String name, String lastName, Byte age) {
-        User user = new User(name, lastName, age);
         userService.saveUser(name, lastName, age);
         System.out.printf("User с именем – %s добавлен в базу данных \n", name);
     }

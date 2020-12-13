@@ -14,7 +14,7 @@ public class UserDaoHibernateImpl implements UserDao {
 
     @Override
     public void createUsersTable() {
-        execute("CREATE TABLE IF NOT EXISTS users (id integer primary key auto_increment, name varchar(100), lastName varchar(100), age int)");
+        execute("CREATE TABLE IF NOT EXISTS users (id integer primary key auto_increment, name varchar(100), lastName varchar(100), age tinyint)");
     }
 
     @Override
@@ -30,6 +30,7 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction = session.beginTransaction();
             User user = new User(name, lastName, age);
             Long userID = (Long) session.save(user);
+            user.setId(userID);
             transaction.commit();
         } catch (HibernateException e) {
             e.printStackTrace();
